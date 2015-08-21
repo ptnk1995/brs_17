@@ -7,6 +7,8 @@ class Book < ActiveRecord::Base
   has_many :book_users, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
+  after_commit :send_mail_new_book, on: :create
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -33,5 +35,9 @@ class Book < ActiveRecord::Base
   def check_day_present
     errors.add :publish_date,
       I18n.t("error.wrong_date") if self.publish_date.present? && self.publish_date.to_date > Date.today
+  end
+
+  def send_mail_new_book
+    BookWork.perform_async self.id
   end
 end

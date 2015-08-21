@@ -189,6 +189,7 @@ en:
       see_request: "See request"
       review: "New review"
       comment: "New Comment"
+      new_book: "We have updated new book."
     header: "[Book-Review-System] You have new notice!!!"
     thank: "Thank you"
     comment_content: "comment in you review. Body of comment:"

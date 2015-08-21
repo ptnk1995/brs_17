@@ -8,4 +8,9 @@ class UserMailer < ApplicationMailer
     @comment = comment
     mail to: @comment.review.user.email, suject: t("email.subject.review")
   end
+
+  def email_new_book user, book
+    @book = book
+    mail to: user.email, subject: t("email.subject.new_book")
+  end
 end
